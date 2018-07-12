@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,13 +24,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
  * @author Suyojan
  */
 @Entity
-@Table(catalog = "abblog", schema = "")
 @NamedQueries({
     @NamedQuery(name = "Testrecord.findAll", query = "SELECT t FROM Testrecord t")})
 public class Testrecord implements Serializable {
@@ -80,9 +82,10 @@ public class Testrecord implements Serializable {
     @NotNull
     @Column(name = "error_category", nullable = false)
     private short errorCategory;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "testRecordId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "testRecordId",fetch = FetchType.EAGER)
     private Collection<Testresult> testresultCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "testrecordId")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private Collection<Dutcomponents> dutcomponentsCollection;
     @OneToMany(mappedBy = "testRecordId")
     private Collection<AppActions> appActionsCollection;

@@ -21,7 +21,6 @@ import javax.validation.constraints.Size;
  * @author Suyojan
  */
 @Entity
-@Table(catalog = "abblog", schema = "")
 @NamedQueries({
     @NamedQuery(name = "Errorclass.findAll", query = "SELECT e FROM Errorclass e")})
 public class Errorclass implements Serializable {

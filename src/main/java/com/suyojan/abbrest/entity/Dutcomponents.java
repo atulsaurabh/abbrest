@@ -25,7 +25,6 @@ import javax.validation.constraints.Size;
  * @author Suyojan
  */
 @Entity
-@Table(catalog = "abblog", schema = "")
 @NamedQueries({
     @NamedQuery(name = "Dutcomponents.findAll", query = "SELECT d FROM Dutcomponents d")})
 public class Dutcomponents implements Serializable {

@@ -24,7 +24,7 @@ import javax.validation.constraints.Size;
  * @author Suyojan
  */
 @Entity
-@Table(catalog = "abblog", schema = "", uniqueConstraints = {
+@Table( schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"reason_code"})})
 @NamedQueries({
     @NamedQuery(name = "Failurecodes.findAll", query = "SELECT f FROM Failurecodes f")})

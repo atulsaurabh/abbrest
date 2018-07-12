@@ -23,7 +23,6 @@ import javax.validation.constraints.Size;
  * @author Suyojan
  */
 @Entity
-@Table(catalog = "abblog", schema = "")
 @NamedQueries({
     @NamedQuery(name = "Displayparams.findAll", query = "SELECT d FROM Displayparams d")})
 public class Displayparams implements Serializable {

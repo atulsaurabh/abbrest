@@ -23,7 +23,6 @@ import javax.persistence.Table;
  * @author Suyojan
  */
 @Entity
-@Table(name = "app_group_params", catalog = "abblog", schema = "")
 @NamedQueries({
     @NamedQuery(name = "AppGroupParams.findAll", query = "SELECT a FROM AppGroupParams a")})
 public class AppGroupParams implements Serializable {

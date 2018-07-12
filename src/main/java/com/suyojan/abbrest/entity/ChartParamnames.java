@@ -24,7 +24,6 @@ import javax.validation.constraints.Size;
  * @author Suyojan
  */
 @Entity
-@Table(name = "chart_paramnames", catalog = "abblog", schema = "")
 @NamedQueries({
     @NamedQuery(name = "ChartParamnames.findAll", query = "SELECT c FROM ChartParamnames c")})
 public class ChartParamnames implements Serializable {

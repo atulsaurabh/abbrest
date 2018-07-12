@@ -6,7 +6,9 @@
 package com.suyojan.abbrest.restcontroller;
 
 import com.suyojan.abbrest.entity.Testrecord;
+import com.suyojan.abbrest.service.DataMigrationService;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,12 +25,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/abbrest")
 public class Batch25UpdateController 
 {
+    @Autowired
+    private DataMigrationService dataMigrationService;
+    
        @PostMapping(value = "/update",consumes = MediaType.APPLICATION_JSON_VALUE)
        @ResponseBody  
        public boolean update25Batch(@RequestBody List<Testrecord> testrecords)
        {
            System.out.println("Data Arraieved "+testrecords.size());
-           if(testrecords.size() <= 25)
+           if(dataMigrationService.migrate25Record(testrecords))
                return true;
            else
                return false;
