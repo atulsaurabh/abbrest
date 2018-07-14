@@ -22,6 +22,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.SelectBeforeUpdate;
 
 /**
  *
@@ -30,13 +31,12 @@ import javax.validation.constraints.Size;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Testresult.findAll", query = "SELECT t FROM Testresult t")})
+@SelectBeforeUpdate(value = false)
 public class Testresult implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)    
     private Long id;
     @Basic(optional = false)
     @NotNull
@@ -54,6 +54,8 @@ public class Testresult implements Serializable {
     @OneToMany(mappedBy = "testResultId")
     private Collection<AppActions> appActionsCollection;
 
+    private Long oldid;
+    
     public Testresult() {
     }
 
@@ -131,5 +133,15 @@ public class Testresult implements Serializable {
     public String toString() {
         return "com.suyojan.abbrest.Testresult[ id=" + id + " ]";
     }
+
+    public Long getOldid() {
+        return oldid;
+    }
+
+    public void setOldid(Long oldid) {
+        this.oldid = oldid;
+    }
+    
+    
     
 }

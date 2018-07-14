@@ -32,7 +32,15 @@ public class Batch25UpdateController
        @ResponseBody  
        public boolean update25Batch(@RequestBody List<Testrecord> testrecords)
        {
-           System.out.println("Data Arraieved "+testrecords.size());
+          
+           testrecords.forEach(testrecord -> {
+               testrecord.setOldId(testrecord.getId());
+               testrecord.setId(null);
+               testrecord.getTestresultCollection().forEach(testresult -> {
+                       testresult.setOldid(testresult.getId());
+                       testresult.setId(null);
+               });
+           });
            if(dataMigrationService.migrate25Record(testrecords))
                return true;
            else

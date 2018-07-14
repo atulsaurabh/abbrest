@@ -19,13 +19,13 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.SelectBeforeUpdate;
 
 /**
  *
@@ -34,6 +34,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Testrecord.findAll", query = "SELECT t FROM Testrecord t")})
+@SelectBeforeUpdate(value = false)
 public class Testrecord implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -58,8 +59,8 @@ public class Testrecord implements Serializable {
     @Column(nullable = false, length = 30)
     private String dut;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
+
+    @Size(min = 0, max = 255)
     @Column(name = "order_code", nullable = false, length = 255)
     private String orderCode;
     @Column(name = "start_time")
@@ -82,13 +83,18 @@ public class Testrecord implements Serializable {
     @NotNull
     @Column(name = "error_category", nullable = false)
     private short errorCategory;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "testRecordId",fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "testRecordId",fetch = FetchType.EAGER)
     private Collection<Testresult> testresultCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "testrecordId")
+    @OneToMany(mappedBy = "testrecordId")
     @LazyCollection(LazyCollectionOption.FALSE)
     private Collection<Dutcomponents> dutcomponentsCollection;
     @OneToMany(mappedBy = "testRecordId")
     private Collection<AppActions> appActionsCollection;
+    
+    private String migratedFrom;
+    
+    private Long oldId;
+    
 
     public Testrecord() {
     }
@@ -251,5 +257,23 @@ public class Testrecord implements Serializable {
     public String toString() {
         return "com.suyojan.abbrest.Testrecord[ id=" + id + " ]";
     }
+
+    public String getMigratedFrom() {
+        return migratedFrom;
+    }
+
+    public void setMigratedFrom(String migratedFrom) {
+        this.migratedFrom = migratedFrom;
+    }
+
+    public Long getOldId() {
+        return oldId;
+    }
+
+    public void setOldId(Long oldId) {
+        this.oldId = oldId;
+    }
+    
+    
     
 }

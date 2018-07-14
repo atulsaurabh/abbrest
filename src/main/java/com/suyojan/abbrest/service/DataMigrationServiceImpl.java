@@ -9,6 +9,7 @@ import com.suyojan.abbrest.entity.Testrecord;
 import com.suyojan.abbrest.repository.TestRecordRepository;
 import java.util.List;
 import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Transactional
 public class DataMigrationServiceImpl implements DataMigrationService{
+    @Autowired
     private TestRecordRepository testRecordRepository;
 
     @Transactional
@@ -28,6 +30,7 @@ public class DataMigrationServiceImpl implements DataMigrationService{
             testRecordRepository.saveAll(testrecords);
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
