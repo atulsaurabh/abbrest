@@ -7,6 +7,9 @@ package com.suyojan.abbrest.restcontroller;
 
 import com.suyojan.abbrest.entity.Testrecord;
 import com.suyojan.abbrest.service.DataMigrationService;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -32,7 +35,8 @@ public class Batch25UpdateController
        @ResponseBody  
        public boolean update25Batch(@RequestBody List<Testrecord> testrecords)
        {
-          
+           LocalDateTime localDateTime = LocalDateTime.now();
+           System.out.println("Data Arived with size "+testrecords.size()+" AT "+localDateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
            testrecords.forEach(testrecord -> {
                testrecord.setOldId(testrecord.getId());
                testrecord.setId(null);

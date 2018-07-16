@@ -5,6 +5,8 @@
  */
 package com.suyojan.abbrest.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -30,6 +32,7 @@ import javax.validation.constraints.Size;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "AppActions.findAll", query = "SELECT a FROM AppActions a")})
+
 public class AppActions implements Serializable {
 
     private static final long serialVersionUID = 1L;
