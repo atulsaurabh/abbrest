@@ -8,11 +8,11 @@ package com.suyojan.abbrest.restcontroller;
 import com.suyojan.abbrest.entity.Testrecord;
 import com.suyojan.abbrest.service.DataMigrationService;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,4 +50,13 @@ public class Batch25UpdateController
            else
                return false;
        }
+       
+       @PostMapping(value = "/retrieve/{migratedFrom}",produces = MediaType.APPLICATION_JSON_VALUE)
+       @ResponseBody
+       public List<Testrecord> getLast25TestRecords(@PathVariable String migratedFrom)
+       {
+           return dataMigrationService.retrieve25Records(migratedFrom);
+       }
+       
+   
 }

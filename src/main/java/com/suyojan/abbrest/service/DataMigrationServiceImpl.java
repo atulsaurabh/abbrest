@@ -34,6 +34,15 @@ public class DataMigrationServiceImpl implements DataMigrationService{
             return false;
         }
     }
+
+    @Override
+    public List<Testrecord> retrieve25Records(String migratedFrom) {
+        
+        return testRecordRepository.findTop25ByMigratedFromOrderByIdDesc(migratedFrom);
+    }
+    
+    
+    
     
     
     

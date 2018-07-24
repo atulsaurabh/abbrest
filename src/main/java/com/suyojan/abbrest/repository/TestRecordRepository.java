@@ -6,6 +6,7 @@
 package com.suyojan.abbrest.repository;
 
 import com.suyojan.abbrest.entity.Testrecord;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,5 +18,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TestRecordRepository extends JpaRepository<Testrecord, Long>
 {
-    
+    List<Testrecord> findTop25ByMigratedFromOrderByIdDesc(String migratedFrom);
 }

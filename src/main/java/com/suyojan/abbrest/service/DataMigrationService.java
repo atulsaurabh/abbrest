@@ -19,4 +19,5 @@ public interface DataMigrationService
 {
     
     public boolean migrate25Record(List<Testrecord> testrecords);
+    public List<Testrecord> retrieve25Records(String migratedFrom);
 }
