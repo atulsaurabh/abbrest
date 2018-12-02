@@ -11,13 +11,24 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author Suyojan
+ * @author Atul Saurabh
+ * @version 1.0
  */
 
 @Service
 public interface DataMigrationService 
 {
-    
+    /**
+     * 
+     * @param testrecords list of records need to be stored in database.
+     * @return if storage is successful then returns true otherwise returns false.
+     */
     public boolean migrate25Record(List<Testrecord> testrecords);
+    /**
+     * 
+     * @param migratedFrom identification of the client
+     * @return returns most recent 25 records sent by the client 
+     *         having identification stored in migratedFrom
+     */
     public List<Testrecord> retrieve25Records(String migratedFrom);
 }

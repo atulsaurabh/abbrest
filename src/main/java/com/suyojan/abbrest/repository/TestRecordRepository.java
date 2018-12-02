@@ -12,11 +12,22 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author Suyojan
+ * @author Atul Saurabh
+ * @version 1.0
+ * @see org.springframework.data.jpa.repository.JpaRepository
  */
 
 @Repository
 public interface TestRecordRepository extends JpaRepository<Testrecord, Long>
 {
+    /**
+     * 
+     * @param migratedFrom identification of the client.
+     * @return A list of com.suyojan.abbrest.entity.Testrecord  
+     */
+    /*
+       Returing list of recent 25 com.suyojan.abbrest.entity.Testrecord which 
+       are sent last client
+    */
     List<Testrecord> findTop25ByMigratedFromOrderByIdDesc(String migratedFrom);
 }
