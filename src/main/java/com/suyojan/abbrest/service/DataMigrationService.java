@@ -24,11 +24,4 @@ public interface DataMigrationService
      * @return if storage is successful then returns true otherwise returns false.
      */
     public boolean migrate25Record(List<Testrecord> testrecords);
-    /**
-     * 
-     * @param migratedFrom identification of the client
-     * @return returns most recent 25 records sent by the client 
-     *         having identification stored in migratedFrom
-     */
-    public List<Testrecord> retrieve25Records(String migratedFrom);
 }

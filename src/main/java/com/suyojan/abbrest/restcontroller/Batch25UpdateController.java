@@ -77,20 +77,7 @@ public class Batch25UpdateController
                return false;
        }
        
-       /**
-        * 
-        * @param migratedFrom identification of the client
-        * @return recently sent records from the client
-        */
-       @PostMapping(value = "/{migratedFrom}",produces = MediaType.APPLICATION_JSON_VALUE)
-       @ResponseBody
-       public List<Testrecord> getLast25TestRecords(@PathVariable String migratedFrom)
-       {
-           /*
-               Returns a bunch of 25 most recent records sent by the client identified by migratedFrom.
-           */
-           return dataMigrationService.retrieve25Records(migratedFrom);
-       }
+
        
    
 }

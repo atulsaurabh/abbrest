@@ -50,7 +50,8 @@ public class DataMigrationServiceImpl implements DataMigrationService{
 
     private boolean isAvailable(List<Testrecord> testrecords)
     {
-     List<Testrecord>  records=   testRecordRepository.findAll().stream().filter(testrecord -> {
+        String migratedFrom = testrecords.get(0).getMigratedFrom();
+     List<Testrecord>  records=   testRecordRepository.findTop25ByMigratedFromOrderByIdDesc(migratedFrom).stream().filter(testrecord -> {
             return testrecords.stream().anyMatch(testrecord1 -> {
                 return testrecord1.getOldId() == testrecord.getOldId() && testrecord.getMigratedFrom().equals(testrecord1.getMigratedFrom());
             });
@@ -58,17 +59,7 @@ public class DataMigrationServiceImpl implements DataMigrationService{
 
      return !records.isEmpty();
     }
-  /**
-     * 
-     * @param migratedFrom identification of the client
-     * @return returns most recent 25 records sent by the client 
-     *         having identification stored in migratedFrom
-     */
-    @Override
-    public List<Testrecord> retrieve25Records(String migratedFrom) {
-        
-        return testRecordRepository.findTop25ByMigratedFromOrderByIdDesc(migratedFrom);
-    }
+
     
     
     
