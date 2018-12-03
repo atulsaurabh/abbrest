@@ -29,15 +29,6 @@ public class AbbrestApplication
                     Majorly It starts embedde tomcat server and 
                     establishes connection to the configured database.
                  */
-
-        String insdir = args[0];
-        if (insdir == null)
-        	throw new Exception("Kindly run with --insdir option");
-        else
-		{
-			String dir=insdir.split("=")[1];
-			Configuration.INS_DIR=dir;
-		}
 		SpringApplication.run(AbbrestApplication.class, args);
 	}
 

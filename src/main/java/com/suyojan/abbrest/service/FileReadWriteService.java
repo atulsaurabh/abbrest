@@ -17,9 +17,9 @@ import java.util.Scanner;
 public class FileReadWriteService
 {
 
-    public DbParam getDatabaseParam()
+    public DbParam getDatabaseParam(String insdir)
     {
-        File file=new File(Configuration.INS_DIR+"/sysconfig.properties");
+        File file=new File(insdir+"/sysconfig.properties");
         try {
             Properties properties=new Properties();
             properties.load(new FileInputStream(file));

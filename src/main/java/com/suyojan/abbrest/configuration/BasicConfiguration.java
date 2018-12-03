@@ -3,6 +3,7 @@ package com.suyojan.abbrest.configuration;
 
 import com.suyojan.abbrest.service.FileReadWriteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -17,6 +18,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.io.FileReader;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Configuration
 @EnableTransactionManagement
@@ -30,11 +33,14 @@ public class BasicConfiguration
 
     @Autowired
     private FileReadWriteService fileReadWriteService;
+    @Value("${insdir}")
+    private String insdir;
     @Bean
     @Primary
     public DataSource dataSource()
     {
-        DbParam configuration=fileReadWriteService.getDatabaseParam();
+        Logger.getGlobal().log(Level.INFO,"HOME="+insdir);
+        DbParam configuration=fileReadWriteService.getDatabaseParam(insdir);
         System.out.println(configuration.getDbName());
         DriverManagerDataSource driverManagerDataSource=new DriverManagerDataSource();
         driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
