@@ -39,7 +39,7 @@ public class Batch25UpdateController
        * @return true or false to the client according to operation is successful 
        *         or fail respectively
        */  
-       @PostMapping(value = "/",consumes = MediaType.APPLICATION_JSON_VALUE)
+       @PostMapping(value = "/",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
        @ResponseBody  
        public boolean update25Batch(@RequestBody List<Testrecord> testrecords)
        {

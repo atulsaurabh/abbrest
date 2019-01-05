@@ -5,6 +5,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 
 /**
@@ -14,7 +15,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  */
 @SpringBootApplication
-public class AbbrestApplication
+public class AbbrestApplication extends SpringBootServletInitializer
+
 {
 
     /**
@@ -29,6 +31,8 @@ public class AbbrestApplication
                     Majorly It starts embedde tomcat server and 
                     establishes connection to the configured database.
                  */
+
+		System.out.println(args.length);
 		SpringApplication.run(AbbrestApplication.class, args);
 	}
 
